@@ -1,0 +1,63 @@
+﻿html body * {
+	box-sizing: border-box;
+	font-size: 45px;
+}
+html body h3 {
+	margin: 30px auto 30px auto;
+	text-align: center;
+	font-family: calibri, arial, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	color: #000066;
+	font-size: 60px;
+}
+div#game {
+	width: 840px;
+	margin: 0 auto;
+	padding: 0 0 0 120px;
+	background-color: none;
+}
+html body div#game h3 {
+	margin: 0 120px 0 0;
+	padding: 40px 0 0 0;
+	font-size: 45px;
+	line-height: 55px;
+	font-weight: normal;
+	color: #990000;
+	text-decoration: underline;
+}
+div table {
+	border-collapse: collapse;
+}
+div table tr td {
+	padding: 0;
+	margin: 0;
+}
+div table tr td button {
+	width: 120px;
+	height: 120px;
+	font-weight: bold;
+	box-sizing: border-box;
+}
+div button.playagain {
+	width: 600px;
+	height: 120px;
+	font-weight: bold;
+	box-sizing: border-box;
+}
+div#possibilities {
+	display: none;
+	margin: 40px 40px 0px;
+	padding: 5px;
+	border: 1px solid #7f7f7f;
+	max-height: 600px;
+	min-height: 600px;
+	overflow: scroll;
+}
+div#possibilities p {
+	font-size: 1em;
+	font-family: calibri, arial, sans-serif;
+	color: #7f7f7f;
+	padding: 0;
+	margin: 0;
+}
