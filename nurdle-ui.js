@@ -12,9 +12,21 @@ function playAgain(){
 }
 
 function togglePossibilities(){
-	if (!window.hasOwnProperty("possVisibility")) window.possVisibility = false;
-	window.possVisibility = !window.possVisibility;
-	document.getElementById("possibilities").style.display = (window.possVisibility)? "block" : "none";
+	if (!window.hasOwnProperty('possState')) window.possState = 0;
+	// if (!window.hasOwnProperty("possVisibility")) window.possVisibility = false;
+	// window.possVisibility = !window.possVisibility;
+	// document.getElementById("possibilities").style.display = (window.possVisibility)? "block" : "none";
+	window.possState = (window.possState+1)%3;
+	document.getElementById("possibilities").style.display = (window.possState>0)? "block" : "none";
+	window.showPatterns = (window.possState==2);
+	if (window.myNurdle.candidates<250){
+		if (window.possState==1){
+			window.myNurdle.dumpCandidates(document.getElementById("possibilities"));
+		}
+		else if (window.possState==2){
+			window.myNurdle.dumpByPattern(document.getElementById("possibilities"));
+		}
+	}
 }
 
 function showStatus(statusText){
@@ -99,7 +111,13 @@ NurdleRow = function(guess, table){
 	this.onClick = function(evt){
 		self.table.nextRow(self.getResponse());
 		if (self.table.nurdle.candidates<250){
-			self.table.nurdle.dumpCandidates(document.getElementById("possibilities"));
+			if (!window.hasOwnProperty('showPatterns')) window.showPatterns = false;
+			if (window.showPatterns){
+				self.table.nurdle.dumpByPattern(document.getElementById("possibilities"));
+			}
+			else {
+				self.table.nurdle.dumpCandidates(document.getElementById("possibilities"));
+			}
 		}
 		else {
 			document.getElementById("possibilities").innerHTML = "";
@@ -220,4 +238,16 @@ NurdleButton = function(letter){
 	}
 	self.button.addEventListener("touchmove", self.onDrag);
 	
+}
+
+// Gets the unicode emoji representation of the colour code
+function getColourPattern(code){
+	var colours = '\u2B1C \uD83D\uDFE8\uD83D\uDFE9'; // white, yellow, green
+	var build = "";
+	for (i=0; i<code.length; i++){
+		var j=parseInt(code.substr(i,1));
+		var len = (j==0)? 1 : 2;
+		build += colours.substr(j*2,len);
+	}
+	return build;
 }

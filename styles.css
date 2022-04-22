@@ -46,18 +46,38 @@ div button.playagain {
 	box-sizing: border-box;
 }
 div#possibilities {
-	display: none;
+	display: block;
 	margin: 40px 40px 0px;
 	padding: 5px;
 	border: 1px solid #7f7f7f;
+	height: 600px;
 	max-height: 600px;
 	min-height: 600px;
 	overflow: scroll;
 }
-div#possibilities p {
-	font-size: 1em;
+div#possibilities div {
+	font-size: 45px;
 	font-family: calibri, arial, sans-serif;
 	color: #7f7f7f;
 	padding: 0;
 	margin: 0;
+	width: 88vw;
+	min-width: 88vw;
+	max-width: 88vw;
+	height: auto;
+}
+div#possibilities table {
+	width: 100%;
+}
+div#possibilities div table tr td {
+	font-size: 45px;
+	font-family: calibri, arial, sans-serif;
+	color: #7f7f7f;
+	padding: 3px;
+	border-bottom: 1px solid #7f7f7f;
+}
+div#possibilities div span.pattern {
+	font-size: 0.4em;
+	display: inline-block;
+	vertical-align: middle;
 }

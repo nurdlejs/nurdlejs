@@ -26,9 +26,9 @@ var Nurdle = function(dtree){
 		var listed = candidateWords.join(", ");
 		if (container) {
 			container.innerHTML = "";
-			var para = document.createElement("p");
-			para.appendChild(document.createTextNode(listed));
-			container.appendChild(para);
+			var div = document.createElement("div");
+			div.innerHTML = "<table><tr><td>"+listed+"</td></tr></table>";
+			container.appendChild(div);
 		}	
 		else console.log(listed);
 	}
@@ -47,8 +47,48 @@ var Nurdle = function(dtree){
 				}
 			}
 		}
-		candidates.sort();
+		candidates = candidates.sort();
 		return candidates;
+	}
+	
+	// lists all possible words indexed by pattern
+	this.listByPattern = function(workingNode){
+		var byCode = new Object();
+		if (!workingNode) workingNode = self.currentNode;
+		var word = Object.keys(workingNode)[0];
+		if (workingNode[word].hasOwnProperty("22222")) {
+			byCode['22222']=new Array(word);
+		}
+		for (key in workingNode[word]){
+			if (key!=="22222"){
+				byCode[key] = self.listCandidates(workingNode[word][key]);
+			}
+		}
+		return byCode;
+	}
+	
+	// output candidate list by code to container or console
+	this.dumpByPattern = function(container){
+		var byPattern = self.listByPattern(self.currentNode);
+		var s = "<table style='width: 100%'><tr><td>";
+		var sep="";
+		var keys = Object.keys(byPattern);
+		keys = keys.sort();
+		keys = keys.reverse();
+		for (keyi in keys){
+			key = keys[keyi];
+			s += sep+"<td><span class='pattern'>"+getColourPattern(key)+"</span>&nbsp;&nbsp;";
+			s += byPattern[key].join(", ");
+			sep="</td></tr><tr><td>"; //"<hr/>";
+		}
+		s+="</td></tr></table>";
+		if (container) {
+			container.innerHTML = "";
+			var div = document.createElement("div");
+			div.innerHTML = s;
+			container.appendChild(div);
+		}	
+		else console.log(byPattern);
 	}
 	
 	// Gets the guess for the current node
