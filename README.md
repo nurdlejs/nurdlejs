@@ -32,3 +32,9 @@ how Nurdle works, discussions of Wordle theory and strategies, and descriptions 
 experiments that have been undertaken using Nurdle.
 
 Mike Alexander, April 2022
+
+Dictionary Updates
+==================
+The original Nurdle dictionary has been updated several times since the New York Times appointed a Wordle
+editor in November 2022. Unfortunately, this means the nurdlejs decision tree can only be updated reactively
+as new solutions emerge. The latest update is as of 19/06/2023.
